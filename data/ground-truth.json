@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "gate": 3,
+    "created": "2026-07-30",
+    "agent": "InvoiceExplainer_InvoiceExplainer-6OivUsDx4c",
+    "window_queried_by_tool": "2026-07-23 to 2026-07-30 (DAILY, GroupBy SERVICE)",
+    "why_this_window": "The tool computes start = today - days (default 7) and filters out any service under $0.001. Ground truth MUST match the window the tool actually queries, or every evaluator scores the agent against data it never saw.",
+    "source": "aws ce get-cost-and-usage --profile <profile> --time-period Start=2026-07-23,End=2026-07-30 --granularity DAILY --metrics UnblendedCost --group-by Type=DIMENSION,Key=SERVICE",
+    "verified_facts": {
+      "total_7d": "28.9999993165",
+      "only_service_above_1_cent": "AWS Skill Builder Individual = $29.00, charged on 2026-07-26",
+      "negative_lines": {
+        "AWS Key Management Service": "-0.000000096 per day",
+        "EC2 - Other": "-0.0000000048 per day"
+      },
+      "bedrock_and_agentcore": "ABSENT from the 7-day window — the agent has not been invoked since 2026-07-09",
+      "what_the_tool_returns": "exactly one line: 'AWS Skill Builder Individual: $29.000'"
+    }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "question": "What did this account spend in the last 7 days?",
+      "expected_response": "About $29.00 total.",
+      "assertion": "States the total is approximately $29",
+      "expected_trajectory": "get_cost_breakdown"
+    },
+    {
+      "id": 2,
+      "question": "Which service cost the most in the last 7 days?",
+      "expected_response": "AWS Skill Builder Individual, at $29.00.",
+      "assertion": "Names AWS Skill Builder Individual as the top service",
+      "expected_trajectory": "get_cost_breakdown"
+    },
+    {
+      "id": 3,
+      "question": "How much did Amazon Bedrock AgentCore cost in the last 7 days?",
+      "expected_response": "Nothing — AgentCore does not appear in the last 7 days of cost data.",
+      "assertion": "Says AgentCore cost is zero or absent, and does not invent a figure",
+      "expected_trajectory": "get_cost_breakdown"
+    },
+    {
+      "id": 4,
+      "question": "How much did I spend on Bedrock model invocations this week?",
+      "expected_response": "Zero — Amazon Bedrock has no charges in the last 7 days.",
+      "assertion": "Says Bedrock spend is zero or absent for the window",
+      "expected_trajectory": "get_cost_breakdown"
+    },
+    {
+      "id": 5,
+      "question": "Is any service showing a negative cost, and why would that happen?",
+      "expected_response": "KMS and EC2-Other show tiny negative amounts; negative lines are credits, refunds or amortization adjustments rather than usage.",
+      "assertion": "Explains a negative cost line as a credit, refund or adjustment",
+      "expected_trajectory": "get_cost_breakdown"
+    },
+    {
+      "id": 6,
+      "question": "How many services cost more than one cent in the last 7 days?",
+      "expected_response": "One — AWS Skill Builder Individual.",
+      "assertion": "Answers exactly one service",
+      "expected_trajectory": "get_cost_breakdown"
+    },
+    {
+      "id": 7,
+      "question": "On which day was the largest charge posted?",
+      "expected_response": "2026-07-26, when the $29.00 Skill Builder charge posted.",
+      "assertion": "Either names 2026-07-26 or states the daily breakdown is not available in its tool output",
+      "expected_trajectory": "get_cost_breakdown"
+    },
+    {
+      "id": 8,
+      "question": "Did CloudWatch cost anything in the last 7 days?",
+      "expected_response": "No — CloudWatch is $0.00 in the window.",
+      "assertion": "Says CloudWatch cost is zero",
+      "expected_trajectory": "get_cost_breakdown"
+    },
+    {
+      "id": 9,
+      "question": "What did this account spend over the last 30 days?",
+      "expected_response": "About $29.00 — the same single Skill Builder charge; nothing else reaches a cent.",
+      "assertion": "States roughly $29 for 30 days and calls the tool with a 30-day lookback",
+      "expected_trajectory": "get_cost_breakdown"
+    },
+    {
+      "id": 10,
+      "question": "Which service should I watch to keep this bill under control?",
+      "expected_response": "Skill Builder is the only real cost, and it is a flat subscription rather than usage; there is nothing usage-driven to watch yet.",
+      "assertion": "Identifies Skill Builder as the only material cost and does not invent a usage-driven risk",
+      "expected_trajectory": "get_cost_breakdown"
+    }
+  ]
+}

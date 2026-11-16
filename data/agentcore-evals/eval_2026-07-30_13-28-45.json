@@ -1,0 +1,99 @@
+{
+  "timestamp": "2026-07-30T13:28:45.627Z",
+  "agent": "InvoiceExplainer_InvoiceExplainer-6OivUsDx4c",
+  "evaluators": [
+    "arn:aws:bedrock-agentcore:::evaluator/Builtin.Correctness"
+  ],
+  "lookbackDays": 1,
+  "sessionCount": 11,
+  "results": [
+    {
+      "evaluator": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Correctness",
+      "aggregateScore": 1,
+      "sessionScores": [
+        {
+          "sessionId": "gate3-C3E34AA3-5660-4312-96D8-195B89D9DB6D",
+          "traceId": "6a6b4997285ed2cd39befad728ceeba1",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows: Gross cost by service (2026-07-23 to 2026-07-30): AWS Skill Builder Individual: $29.0000, Credits applied: $-0.0000 (net may be ~$0). The candidate response states the account spent $29.00 on AWS Skill Builder Individual, no credits applied, and net cost is also $29.00. This is accurate - the gross cost is $29.00, credits are $0, so net is $29.00. The response correctly captures the key information from the tool output."
+        },
+        {
+          "sessionId": "gate3q1-10870A2C-7AA9-438C-9176-42445C82E4B0",
+          "traceId": "6a6b49b5311904a02fefabb43904caa5",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows: Gross cost by service (2026-07-23 to 2026-07-30): AWS Skill Builder Individual: $29.0000, Credits applied: $-0.0000 (net may be ~$0). The candidate response states the account spent $29.00 on AWS Skill Builder Individual, no credits applied, and net cost is also $29.00. This accurately reflects the tool output. The note about 'net may be ~$0' in the tool output refers to the credits being ~$0 (i.e., no credits), not that the net total is ~$0. The candidate's interpretation that net cost is $29.00 is correct since credits applied are $0."
+        },
+        {
+          "sessionId": "gate3q2-8C150D56-242C-4256-BE1F-02ECEB3F965A",
+          "traceId": "6a6b49c02c2620b414ae678c24467aff",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows that AWS Skill Builder Individual had a gross cost of $29.0000 in the last 7 days, and it's the only service listed. The candidate response correctly identifies AWS Skill Builder Individual as the most expensive service at $29.00, and correctly notes no credits were applied. The statement about net cost being the same as gross cost is slightly imprecise (the tool shows credits of $-0.0000, meaning effectively $0 credits), but this is not a meaningful error. All factual claims are accurate."
+        },
+        {
+          "sessionId": "gate3q3-E9332E8C-455F-47AA-ADEA-FC5B81B06C8A",
+          "traceId": "6a6b49cc4bcce3602398bf6b5b0d2aad",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows cost breakdown for the last 7 days (2026-07-23 to 2026-07-30), which only includes 'AWS Skill Builder Individual: $29.0000' with no mention of Amazon Bedrock AgentCore. The candidate response correctly interprets this as meaning there are no costs for Amazon Bedrock AgentCore in the last 7 days. This is an accurate interpretation of the tool output - if Amazon Bedrock AgentCore had costs, it would appear in the breakdown. The response correctly states there are no costs for that service and offers to help further. The core answer is factually accurate based on the tool output."
+        },
+        {
+          "sessionId": "gate3q4-D72DF07F-C1B3-48A6-9A12-6E9804A8BD3B",
+          "traceId": "6a6b49d91e105db225dfe8de50cc2cb7",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows costs for the period 2026-07-23 to 2026-07-30, listing only 'AWS Skill Builder Individual: $29.0000' with no Bedrock-related costs. The candidate response correctly states that no costs were found for Bedrock model invocations, and accurately reports the only cost found ($29.00 for AWS Skill Builder Individual) with no credits applied. The response accurately reflects the tool output and correctly addresses the user's question about Bedrock model invocation costs."
+        },
+        {
+          "sessionId": "gate3q5-02BAB46A-2CB5-49EE-A6F3-123260EE8E51",
+          "traceId": "6a6b49e53545773d3c75e1cf18cc3a97",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows: 'AWS Skill Builder Individual: $29.0000' and 'Credits applied: $-0.0000 (net may be ~$0)'. The candidate response correctly states there are no services showing a negative cost. The only service is AWS Skill Builder Individual at $29.00, and no credits were applied ($-0.0000 effectively means zero). The candidate's explanation that a negative cost would indicate credits or refunds is accurate. The response correctly addresses the core question and provides accurate information based on the tool output."
+        },
+        {
+          "sessionId": "gate3q6-D0CB505D-4145-45F2-A023-676538A51E96",
+          "traceId": "6a6b49f21f37dd7d1b0f25c76475a734",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows only one service with a cost in the last 7 days: AWS Skill Builder Individual at $29.00. The candidate response correctly identifies that 1 service costs more than one cent, and correctly names that service with its cost. The response is factually accurate and directly addresses the question."
+        },
+        {
+          "sessionId": "gate3q7-46C88055-831E-470D-86F8-C9CDBAA807E1",
+          "traceId": "6a6b49fe0ac57c3401a3a1871916e34e",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output only provides a cost breakdown by service over a 30-day period, not a daily breakdown. The assistant correctly identifies that the tool does not provide daily cost data and cannot determine which specific day had the largest charge. This is an accurate assessment of the tool's limitations based on the available data. The response is factually correct in stating that the tool doesn't support daily breakdowns, and appropriately informs the user of this limitation."
+        },
+        {
+          "sessionId": "gate3q8-AC5218C3-C6A3-4FD9-A048-7D806792AEC4",
+          "traceId": "6a6b4a0d758c8b773c72498467a5e4b8",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows cost breakdown for the last 7 days (2026-07-23 to 2026-07-30), listing only 'AWS Skill Builder Individual: $29.0000' with no CloudWatch entry. The candidate response correctly states that CloudWatch did not cost anything in the last 7 days, and correctly identifies AWS Skill Builder Individual as the only service with a cost at $29.0000. The statement about credits is slightly imprecise (the tool shows '$-0.0000' credits applied, meaning effectively no credits), but the candidate says 'no credits applied' which is functionally accurate. All core factual claims are correct."
+        },
+        {
+          "sessionId": "gate3q9-0A093B50-C509-4F9A-A210-6126C4A6EFCB",
+          "traceId": "6a6b4a19281863d94677f449727a1360",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows: Gross cost by service from 2026-06-30 to 2026-07-30: AWS Skill Builder Individual: $29.0000, Credits applied: $-0.0000. The candidate response states the account spent $29.00 on AWS Skill Builder Individual, with no credits applied, and net cost is also $29.00. This accurately reflects the tool output. The response correctly identifies the service, the amount, and the credits situation. All factual claims are accurate."
+        },
+        {
+          "sessionId": "gate3q10-93E818DD-2480-4551-B99A-9478E34891FE",
+          "traceId": "6a6b4a257168f86029e41e492436fc25",
+          "value": 1,
+          "label": "Perfectly Correct",
+          "explanation": "The tool output shows that the only service with a cost is 'AWS Skill Builder Individual' at $29.00 for the past 7 days, with no credits applied. The candidate response correctly identifies this as the only service with a cost and recommends monitoring it to keep the bill under control. The response accurately states the gross cost of $29.00 and notes that no credits were applied. The core answer to the question 'Which service should I watch?' is correctly answered as AWS Skill Builder Individual. The response is factually accurate based on the tool output provided."
+        }
+      ],
+      "tokenUsage": {
+        "inputTokens": 11254,
+        "outputTokens": 1604,
+        "totalTokens": 12858
+      }
+    }
+  ]
+}

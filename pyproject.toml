@@ -1,0 +1,12 @@
+[project]
+name = "uaef-poc"
+version = "0.1.0"
+description = "Replay the Gate 3 AgentCore sessions through UAEF"
+requires-python = ">=3.12,<3.13"
+dependencies = ["uaef"]
+
+[tool.uv.sources]
+uaef = { git = "https://github.com/awslabs/uaef.git", rev = "dc55d8ca54331176bb16744b9cc680f806075700" }
+
+[tool.uv]
+package = false

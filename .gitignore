@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+results/offline.json
+results/*smoke*
+results/run-all.log
